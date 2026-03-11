@@ -5,12 +5,13 @@
 
 /* --- CSS VARIABLES --- */
 :root {
+  --orange:     #F26522;
   --black:      #080808;
   --navy:       #0a0f1e;
   --navy-light: #0d1530;
   --gold:       #C9A84C;
   --gold-dim:   #8a6e2e;
-  --green:      #00FF41;
+  --green:      #2ECC9A;
   --green-dim:  #00aa2b;
   --white:      #e8e8e8;
   --grey:       #555e6e;
@@ -66,6 +67,8 @@ a:hover {
 /* --- UTILITY --- */
 .gold  { color: var(--gold); }
 .green { color: var(--green); }
+.orange { color: var(--orange); }
+
 
 /* --- HEADER --- */
 header {
