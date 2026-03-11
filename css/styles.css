@@ -404,8 +404,11 @@ footer {
   background: var(--black);
   border-top: 1px solid var(--border);
   padding: 28px 80px;
-  position: relative;
-  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
 }
 
 .footer-inner {
