@@ -464,7 +464,7 @@ footer {
 
   .footer-inner {
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     text-align: center;
   }
 
