@@ -463,9 +463,11 @@ footer {
   footer { padding: 24px; }
 
   .footer-inner {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 8px;
     text-align: center;
+    justify-content: center;
   }
 
   nav ul { gap: 20px; }
