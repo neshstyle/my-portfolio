@@ -88,5 +88,157 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   window.skipLoader = hideLoader;
+// ============================================
+  // PARTICLE CONSTELLATION — HERO
+  // ============================================
+  var pc     = document.getElementById('particle-canvas');
+  if (pc) {
+    var pctx   = pc.getContext('2d');
+    pc.width   = window.innerWidth;
+    pc.height  = window.innerHeight;
 
+    var mouse = { x: pc.width / 2, y: pc.height / 2 };
+
+    var particles = [];
+
+    function Particle() {
+      this.x      = Math.random() * pc.width;
+      this.y      = Math.random() * pc.height;
+      this.r      = Math.random() * 1.8 + 0.4;
+      this.dx     = (Math.random() - 0.5) * 0.4;
+      this.dy     = (Math.random() - 0.5) * 0.4;
+      this.alpha  = Math.random() * 0.6 + 0.2;
+      this.exploding  = false;
+      this.explodeDx  = 0;
+      this.explodeDy  = 0;
+      this.life       = 1;
+    }
+
+    Particle.prototype.update = function() {
+      if (this.exploding) {
+        this.x += this.explodeDx;
+        this.y += this.explodeDy;
+        this.explodeDx *= 0.92;
+        this.explodeDy *= 0.92;
+        this.life -= 0.02;
+        if (this.life <= 0) {
+          this.x     = Math.random() * pc.width;
+          this.y     = Math.random() * pc.height;
+          this.exploding = false;
+          this.life  = 1;
+        }
+        return;
+      }
+      this.x += this.dx;
+      this.y += this.dy;
+
+      // mouse repulsion
+      var mdx   = this.x - mouse.x;
+      var mdy   = this.y - mouse.y;
+      var mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+      if (mdist < 100) {
+        var force = (100 - mdist) / 100;
+        this.x += (mdx / mdist) * force * 2;
+        this.y += (mdy / mdist) * force * 2;
+      }
+
+      if (this.x < 0 || this.x > pc.width)  this.dx *= -1;
+      if (this.y < 0 || this.y > pc.height) this.dy *= -1;
+    };
+
+    Particle.prototype.draw = function() {
+      var a = this.exploding ? this.alpha * this.life : this.alpha;
+      pctx.beginPath();
+      pctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      pctx.fillStyle = 'rgba(201,168,76,' + a + ')';
+      pctx.fill();
+
+      // glow
+      var grad = pctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 3);
+      grad.addColorStop(0, 'rgba(201,168,76,' + (a * 0.3) + ')');
+      grad.addColorStop(1, 'rgba(201,168,76,0)');
+      pctx.beginPath();
+      pctx.arc(this.x, this.y, this.r * 3, 0, Math.PI * 2);
+      pctx.fillStyle = grad;
+      pctx.fill();
+    };
+
+    Particle.prototype.explode = function() {
+      this.exploding  = true;
+      var angle       = Math.random() * Math.PI * 2;
+      var speed       = Math.random() * 8 + 3;
+      this.explodeDx  = Math.cos(angle) * speed;
+      this.explodeDy  = Math.sin(angle) * speed;
+      this.life       = 1;
+      this.alpha      = Math.random() * 0.8 + 0.4;
+      this.r          = Math.random() * 2.5 + 0.8;
+    };
+
+    // init 220 particles (dense)
+    for (var i = 0; i < 220; i++) {
+      particles.push(new Particle());
+    }
+
+    function drawLines() {
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var dx   = particles[i].x - particles[j].x;
+          var dy   = particles[i].y - particles[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 130) {
+            var alpha = (1 - dist / 130) * 0.12;
+            pctx.beginPath();
+            pctx.moveTo(particles[i].x, particles[i].y);
+            pctx.lineTo(particles[j].x, particles[j].y);
+            pctx.strokeStyle = 'rgba(201,168,76,' + alpha + ')';
+            pctx.lineWidth = 0.6;
+            pctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      pctx.clearRect(0, 0, pc.width, pc.height);
+      drawLines();
+      for (var i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
+
+    // mouse move
+    document.getElementById('hero').addEventListener('mousemove', function(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    // click explode
+    document.getElementById('hero').addEventListener('click', function(e) {
+      for (var i = 0; i < particles.length; i++) {
+        var dist = Math.sqrt(
+          Math.pow(particles[i].x - e.clientX, 2) +
+          Math.pow(particles[i].y - e.clientY, 2)
+        );
+        if (dist < 180) particles[i].explode();
+      }
+      // burst at click
+      for (var b = 0; b < 20; b++) {
+        var burst  = new Particle();
+        burst.x    = e.clientX;
+        burst.y    = e.clientY;
+        burst.explode();
+        particles.push(burst);
+      }
+      if (particles.length > 280) particles.splice(220, particles.length - 220);
+    });
+
+    window.addEventListener('resize', function() {
+      pc.width  = window.innerWidth;
+      pc.height = window.innerHeight;
+    });
+  }
 });
