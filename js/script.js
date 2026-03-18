@@ -329,5 +329,23 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
+  // ============================================
+  // MAGNETIC HOVER — PROJECT CARDS
+  // ============================================
+  var magnetCards = document.querySelectorAll('.flip-card-v');
+  magnetCards.forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      if (window.innerWidth <= 768) return;
+      var rect   = card.getBoundingClientRect();
+      var x      = e.clientX - rect.left - rect.width / 2;
+      var y      = e.clientY - rect.top - rect.height / 2;
+      card.style.transform = 'translate(' + (x * 0.08) + 'px, ' + (y * 0.08) + 'px)';
+      card.style.transition = 'transform 0.1s ease';
+    });
+
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = 'translate(0, 0)';
+      card.style.transition = 'transform 0.4s ease';
+    });
+  });
 });
