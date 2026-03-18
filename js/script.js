@@ -348,4 +348,117 @@ document.addEventListener('DOMContentLoaded', function() {
       card.style.transition = 'transform 0.4s ease';
     });
   });
+
+// ============================================
+  // CONTACT MATRIX RAIN
+  // ============================================
+  var cmc = document.getElementById('contact-matrix');
+  if (cmc) {
+    var cmctx  = cmc.getContext('2d');
+    cmc.width  = cmc.parentElement.offsetWidth;
+    cmc.height = cmc.parentElement.offsetHeight;
+
+    var cKatakana  = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'.split('');
+    var cFontSize  = 14;
+    var cCols      = Math.floor(cmc.width / cFontSize);
+    var cDrops     = Array(cCols).fill(1);
+
+    function drawContactMatrix() {
+      cmctx.fillStyle = 'rgba(8,8,8,0.05)';
+      cmctx.fillRect(0, 0, cmc.width, cmc.height);
+      cDrops.forEach(function(y, i) {
+        var char = Math.random() > 0.3
+          ? cKatakana[Math.floor(Math.random() * cKatakana.length)]
+          : Math.floor(Math.random() * 10).toString();
+        var b = Math.random();
+        if (b > 0.96) {
+          cmctx.fillStyle = 'rgba(220,255,220,0.95)';
+          cmctx.font = 'bold ' + cFontSize + 'px JetBrains Mono';
+        } else if (b > 0.75) {
+          cmctx.fillStyle = 'rgba(0,255,65,0.9)';
+          cmctx.font = cFontSize + 'px JetBrains Mono';
+        } else if (b > 0.45) {
+          cmctx.fillStyle = 'rgba(0,200,50,0.6)';
+          cmctx.font = cFontSize + 'px JetBrains Mono';
+        } else {
+          cmctx.fillStyle = 'rgba(0,130,30,0.35)';
+          cmctx.font = cFontSize + 'px JetBrains Mono';
+        }
+        cmctx.fillText(char, i * cFontSize, y * cFontSize);
+        if (y * cFontSize > cmc.height && Math.random() > 0.975) cDrops[i] = 0;
+        cDrops[i]++;
+      });
+    }
+
+    setInterval(drawContactMatrix, 40);
+  }
+
+  // ============================================
+  // FORM VALIDATION + TOAST
+  // ============================================
+  var submitBtn = document.getElementById('submit-btn');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function() {
+      var valid   = true;
+      var name    = document.getElementById('name');
+      var email   = document.getElementById('email');
+      var message = document.getElementById('message');
+
+      // reset
+      [name, email, message].forEach(function(f) {
+        f.classList.remove('error', 'success');
+      });
+      document.querySelectorAll('.error-msg').forEach(function(e) {
+        e.classList.remove('visible');
+      });
+
+      // name
+      if (!name.value.trim()) {
+        name.classList.add('error');
+        document.getElementById('name-error').classList.add('visible');
+        valid = false;
+      } else { name.classList.add('success'); }
+
+      // email
+      var emailReg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailReg.test(email.value.trim())) {
+        email.classList.add('error');
+        document.getElementById('email-error').classList.add('visible');
+        valid = false;
+      } else { email.classList.add('success'); }
+
+      // message
+      if (!message.value.trim()) {
+        message.classList.add('error');
+        document.getElementById('message-error').classList.add('visible');
+        valid = false;
+      } else { message.classList.add('success'); }
+
+      if (valid) {
+        var toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(function() {
+          toast.classList.remove('show');
+        }, 4000);
+        // reset form
+        setTimeout(function() {
+          [name, email, message].forEach(function(f) {
+            f.value = '';
+            f.classList.remove('success', 'error');
+          });
+          document.getElementById('char-count').textContent = '0';
+        }, 500);
+      }
+    });
+
+    // char counter
+    var msgArea = document.getElementById('message');
+    if (msgArea) {
+      msgArea.addEventListener('input', function() {
+        document.getElementById('char-count').textContent = msgArea.value.length;
+      });
+    }
+  }
+
+  
 });
