@@ -318,4 +318,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+// ============================================
+  // FLIP CARDS — TAP ON MOBILE
+  // ============================================
+  var flipCards = document.querySelectorAll('.flip-card-v');
+  flipCards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      if (window.innerWidth <= 768) {
+        card.classList.toggle('flipped');
+      }
+    });
+  });
+  
 });
