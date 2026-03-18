@@ -252,5 +252,70 @@ document.addEventListener('DOMContentLoaded', function() {
     var bar        = document.getElementById('progress-bar');
     if (bar) bar.style.width = progress + '%';
   });
-  
+  // ============================================
+  // GSAP SCROLL ANIMATIONS
+  // ============================================
+  if (typeof gsap !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // about section fade in
+    gsap.from('.about-text p', {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top 80%'
+      }
+    });
+
+    // stat cards stagger
+    gsap.from('.stat-card', {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: '.about-stats',
+        start: 'top 80%'
+      }
+    });
+
+    // section titles
+    gsap.utils.toArray('h2').forEach(function(h) {
+      gsap.from(h, {
+        opacity: 0,
+        x: -30,
+        duration: 0.7,
+        scrollTrigger: {
+          trigger: h,
+          start: 'top 85%'
+        }
+      });
+    });
+
+    // project cards stagger
+    gsap.from('.project-card', {
+      opacity: 0,
+      y: 50,
+      duration: 0.7,
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: '.projects-grid',
+        start: 'top 80%'
+      }
+    });
+
+    // contact section
+    gsap.from('#contact .section-inner', {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: '#contact',
+        start: 'top 80%'
+      }
+    });
+  }
 });
