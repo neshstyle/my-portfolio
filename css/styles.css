@@ -689,3 +689,17 @@ footer {
 }
 
 .skip-btn:hover { color: #00FF41; }
+
+/* =============================================
+   SCROLL PROGRESS BAR
+   ============================================= */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--orange));
+  z-index: 9998;
+  transition: width 0.1s linear;
+}
