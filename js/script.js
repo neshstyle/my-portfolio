@@ -241,4 +241,16 @@ document.addEventListener('DOMContentLoaded', function() {
       pc.height = window.innerHeight;
     });
   }
+
+// ============================================
+  // SCROLL PROGRESS BAR
+  // ============================================
+  window.addEventListener('scroll', function() {
+    var scrollTop  = window.scrollY;
+    var docHeight  = document.body.scrollHeight - window.innerHeight;
+    var progress   = (scrollTop / docHeight) * 100;
+    var bar        = document.getElementById('progress-bar');
+    if (bar) bar.style.width = progress + '%';
+  });
+  
 });
