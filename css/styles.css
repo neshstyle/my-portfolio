@@ -1,6 +1,15 @@
 /* =============================================
 /* Portfolio v1.0 — Anesh Maharaj */
 
+// ============================================
+// Anesh Maharaj — Portfolio
+// script.js — Main JavaScript File
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('// Portfolio initialized');
+});
+
 
 /* --- CSS VARIABLES --- */
 :root {
