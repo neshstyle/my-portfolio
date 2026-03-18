@@ -703,3 +703,86 @@ footer {
   z-index: 9998;
   transition: width 0.1s linear;
 }
+
+/* =============================================
+   VERTICAL FLIP CARDS
+   ============================================= */
+.flip-card-v {
+  height: 300px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-inner-v {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4,0.2,0.2,1);
+}
+
+.flip-card-v:hover .flip-inner-v {
+  transform: rotateX(180deg);
+}
+
+/* mobile — flip on tap */
+.flip-card-v.flipped .flip-inner-v {
+  transform: rotateX(180deg);
+}
+
+.flip-front-v, .flip-back-v {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border: 1px solid var(--border);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.flip-front-v {
+  background: linear-gradient(160deg, #0d1225, #0a1628);
+  border-bottom: 2px solid var(--gold);
+}
+
+.flip-icon {
+  font-size: 2.4rem;
+  margin-bottom: auto;
+  padding-top: 8px;
+}
+
+.flip-front-v h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.flip-hint {
+  font-size: 0.6rem;
+  color: var(--grey);
+  letter-spacing: 0.1em;
+  margin-top: 6px;
+}
+
+.flip-back-v {
+  background: linear-gradient(160deg, #1a0f0a, #0a1628);
+  border-top: 2px solid var(--orange);
+  transform: rotateX(180deg);
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.flip-back-v h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--gold);
+}
+
+.flip-back-v p {
+  font-size: 0.76rem;
+  color: #9aa3b2;
+  line-height: 1.8;
+  flex: 1;
+}
