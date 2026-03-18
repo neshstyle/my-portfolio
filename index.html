@@ -186,23 +186,74 @@
   </div>
 </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-inner">
-      <div class="section-label"><span class="orange">//</span> 03 &mdash; Contact</div>
-      <h2>Get In Touch</h2>
-      <p class="section-intro">
-        Whether you're looking to collaborate, hire, or just connect — reach out. A contact form will be available here soon.
-      </p>
-      <div class="contact-placeholder">
-        <div class="contact-line"><span class="gold">Location:</span> Toronto, Ontario, Canada</div>
-        <div class="contact-line"><span class="gold">GitHub:</span> <a href="https://github.com/Neshstyle" target="_blank">github.com/Neshstyle</a></div>
-        <div class="contact-line"><span class="gold">Brand:</span> Neshstyle Group Inc.</div>
-        <div class="contact-line"><span class="green">// </span>Contact form coming in a future chapter.</div>
-      </div>
-    </div>
-  </section>
+<!-- CONTACT -->
+<section id="contact">
+  <canvas id="contact-matrix"></canvas>
+  <div class="contact-overlay"></div>
+  <div class="section-inner">
+    <div class="section-label"><span class="orange">//</span> 03 &mdash; Contact</div>
+    <h2>Get In Touch</h2>
+    <div class="contact-grid">
 
+      <!-- LEFT -->
+      <div class="contact-left">
+        <p class="contact-desc">
+          Whether you're looking to collaborate, hire, or just connect — reach out. Always open to interesting conversations and new opportunities.
+        </p>
+        <div class="contact-details">
+          <div class="contact-line">
+            <span class="gold">Location:</span>
+            Toronto, Ontario, Canada
+          </div>
+          <div class="contact-line">
+            <span class="gold">GitHub:</span>
+            <a href="https://github.com/Neshstyle" target="_blank">github.com/Neshstyle</a>
+          </div>
+          <div class="contact-line">
+            <span class="gold">Brand:</span>
+            Neshstyle Group Inc.
+          </div>
+          <div class="contact-line">
+            <span class="gold">Ventures:</span>
+            NeshAI &nbsp;·&nbsp; Solstice Intelligence
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT — FORM -->
+      <div class="contact-form">
+        <div class="form-title">// Send a message</div>
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your full name" autocomplete="off"/>
+          <div class="error-msg" id="name-error">// Name cannot be empty</div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" id="email" placeholder="your@email.com" autocomplete="off"/>
+          <div class="error-msg" id="email-error">// Please enter a valid email address</div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="What's on your mind?" maxlength="500"></textarea>
+          <div class="char-count"><span id="char-count">0</span> / 500</div>
+          <div class="error-msg" id="message-error">// Message cannot be empty</div>
+        </div>
+
+        <button class="submit-btn" id="submit-btn">Send Message →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="tick">✓</span> Message received. I'll be in touch shortly.
+</div>
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
