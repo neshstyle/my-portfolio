@@ -8,8 +8,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+<script src="js/script.js" defer></script>
 </head>
 <body>
+  
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <canvas id="loader-matrix"></canvas>
+  <div class="loader-logo">[<span class="gold">AM</span>]</div>
+  <div class="terminal-loader">
+    <div class="terminal-header">
+      <div class="terminal-controls">
+        <div class="control close"></div>
+        <div class="control minimize"></div>
+        <div class="control maximize"></div>
+      </div>
+      <div class="terminal-title">neshstyle-ai</div>
+    </div>
+    <div class="text">&gt; Decrypting Portfolio...</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>// loading assets</span>
+      <span id="pct">0%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+  </div>
+</div>
+<button class="skip-btn" onclick="skipLoader()">skip →</button>
+  
 
   <!-- HEADER & NAV -->
   <header id="top">
