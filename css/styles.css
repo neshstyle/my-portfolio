@@ -457,6 +457,7 @@ h2 {
   height: 140px;
   object-fit: cover;
   margin-bottom: auto;
+  mix-blend-mode: lighten;
 }
 
 .flip-back-v {
