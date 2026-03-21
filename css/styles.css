@@ -430,7 +430,7 @@ h2 {
 .flip-front-v {
   background: linear-gradient(160deg, #0d1225, #0a1628);
   border-bottom: 2px solid var(--gold);
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .flip-icon {
@@ -456,7 +456,7 @@ h2 {
 .flip-img {
   width: 100%;
   height: 160px;
-  object-fit: cover;
+  object-fit: contain;
   margin-bottom: auto;
 }
 
