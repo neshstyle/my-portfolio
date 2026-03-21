@@ -455,15 +455,11 @@ h2 {
 
 .flip-img {
   width: 100%;
-  height: 150px;
+  height: 160px;
   object-fit: cover;
   margin-bottom: auto;
 }
 
-.flip-img-contain {
-  object-fit: contain;
-  background: transparent;
-}
 
 .flip-back-v {
   background: linear-gradient(160deg, #1a0f0a, #0a1628);
