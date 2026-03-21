@@ -452,6 +452,13 @@ h2 {
   margin-top: 6px;
 }
 
+.flip-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  margin-bottom: auto;
+}
+
 .flip-back-v {
   background: linear-gradient(160deg, #1a0f0a, #0a1628);
   border-top: 2px solid var(--orange);
