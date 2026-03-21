@@ -69,10 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
     pctEl.textContent = Math.floor(pct) + '%';
   }, 40);
 
-  // auto hide after 3.4s
+  // auto hide after 1.5s
   var loaderTimer = setTimeout(function() {
     hideLoader();
-  }, 3400);
+  }, 1500);
 
   function hideLoader() {
     clearInterval(matrixInterval);
