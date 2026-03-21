@@ -383,7 +383,7 @@ h2 {
   flex-wrap: wrap;
   gap: 8px;
   overflow: hidden;
-  max-height: 60px;
+ 
 }
 
 .project-tech span {
