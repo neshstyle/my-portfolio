@@ -435,6 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else { message.classList.add('success'); }
 
       if (valid) {
+         window.location.href = 'mailto:neshstyleL@icloud.com?subject=Portfolio Contact from ' + encodeURIComponent(name.value) + '&body=' + encodeURIComponent(message.value + '\n\nFrom: ' + email.value);
         var toast = document.getElementById('toast');
         toast.classList.add('show');
         setTimeout(function() {
