@@ -679,15 +679,11 @@ h2 {
 .tick { color: #00FF41; margin-right: 10px; }
 
 /* --- FOOTER --- */
+
 footer {
   background: var(--black);
   border-top: 1px solid var(--border);
   padding: 28px 80px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 99;
 }
 
 .footer-inner {
