@@ -1025,3 +1025,21 @@ nav ul li a.active-nav::after {
   color: var(--gold);
   box-shadow: 0 0 12px rgba(201,168,76,0.15);
 }
+
+/* live project link */
+.project-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(46,204,154,0.3);
+  transition: all 0.2s;
+}
+
+.project-link:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
