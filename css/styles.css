@@ -977,3 +977,12 @@ footer {
 .flip-card-v.hidden {
   display: none;
 }
+
+/* active nav link on scroll */
+nav ul li a.active-nav {
+  color: var(--gold);
+}
+
+nav ul li a.active-nav::after {
+  width: 100%;
+}
