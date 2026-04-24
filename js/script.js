@@ -461,5 +461,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // ============================================
+  // PROJECT FILTERING
+  // ============================================
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var projectCards = document.querySelectorAll('.flip-card-v');
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      // remove active from all buttons
+      filterBtns.forEach(function(b) {
+        b.classList.remove('active');
+      });
+
+      // set clicked button as active
+      btn.classList.add('active');
+
+      var filter = btn.getAttribute('data-filter');
+
+      // show/hide cards
+      projectCards.forEach(function(card) {
+        if (filter === 'all') {
+          card.classList.remove('hidden');
+        } else if (card.getAttribute('data-category') === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
   
 });
