@@ -329,13 +329,15 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  // ============================================
+ // ============================================
   // MAGNETIC HOVER — PROJECT CARDS
   // ============================================
   var magnetCards = document.querySelectorAll('.flip-card-v');
   magnetCards.forEach(function(card) {
     card.addEventListener('mousemove', function(e) {
       if (window.innerWidth <= 768) return;
+      // disable magnetic when card is flipped
+      if (card.querySelector('.flip-inner-v').style.transform === 'rotateX(180deg)') return;
       var rect   = card.getBoundingClientRect();
       var x      = e.clientX - rect.left - rect.width / 2;
       var y      = e.clientY - rect.top - rect.height / 2;
@@ -348,7 +350,6 @@ document.addEventListener('DOMContentLoaded', function() {
       card.style.transition = 'transform 0.4s ease';
     });
   });
-
 // ============================================
   // CONTACT MATRIX RAIN
   // ============================================
