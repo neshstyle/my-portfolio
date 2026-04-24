@@ -1,5 +1,5 @@
 /* =============================================
-   Portfolio v1.0 — Anesh Maharaj
+   Portfolio v2.0 — Anesh Maharaj
    ============================================= */
 
 /* --- CSS VARIABLES --- */
@@ -402,12 +402,17 @@ h2 {
   cursor: pointer;
 }
 
-.flip-inner-v {
+..flip-inner-v {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.7s cubic-bezier(0.4,0.2,0.2,1);
+  pointer-events: none;
+}
+
+.flip-card-v:hover .flip-inner-v {
+  pointer-events: auto;
 }
 
 .flip-card-v:hover .flip-inner-v {
@@ -470,6 +475,8 @@ h2 {
   transform: rotateX(180deg);
   justify-content: flex-start;
   gap: 10px;
+  pointer-events: auto;
+  z-index: 10;
 }
 
 .flip-back-v h3 {
